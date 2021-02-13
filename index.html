@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mafia Randomizer</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(function()
+        {
+            $(btnAdd).click(function()
+            {
+                $("#MasterSelectBox option:selected").each(function()
+                {
+                    $(this).remove().appendTo("#PairedSelectBox");
+                });
+            });
+
+            $(btnRemove).click(function()
+            {
+                $("#PairedSelectBox option:selected").each(function()
+                {
+                    $(this).remove().appendTo("#MasterSelectBox");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>Enter the number of players:</p>
+<input id="id1" type="number" max="20" required></input>
+<br>
+<table>
+    <tr><td>Select Roles:</td><td></td></tr>
+    <tr><td>  <form>  <select id="MasterSelectBox" multiple="multiple">
+        <option value="Doctor">Doctor</option>
+        <option value="Detector">Detector</option>
+        <option value="Sniper">Sniper</option>
+        <option value="Ruintan">Ruintan</option>
+        <option value="Don">Don</option>
+
+    </select></form></td>
+
+        <td> <button id="btnAdd"> > </button><br>
+            <button id="btnRemove"> < </button>
+        </td>
+
+        <td> <form><select id="PairedSelectBox" multiple="multiple">
+        </select> </form></td>
+
+    </tr>
+
+</table>
+<button id="save">Save</button>
+<p id="output"></p>
+
+</body>
+</html>
