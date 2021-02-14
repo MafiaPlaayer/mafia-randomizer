@@ -28,11 +28,20 @@
         });
     </script>
 </head>
+<style>
+#rcorners {
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 20px;
+    width: 50%;
+    height: 10%;
+}
+</style>
 <body>
 
-<p>Enter the number of players:</p>
+<p id="rcorners">Enter the number of players:
 <input id="id1" type="number" max="20" required></input>
-<br>
+</p>
 <table>
     <tr><td>Select Roles:</td><td></td></tr>
     <tr><td>  <form>  <select id="MasterSelectBox" multiple="multiple">
