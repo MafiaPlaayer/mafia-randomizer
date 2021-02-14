@@ -1,77 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mafia Randomizer</title>
-  <link rel="stylesheet" href="/assets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mafia Randomizer</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        $(function()
+        {
+            $(btnAdd).click(function()
+            {
+                $("#MasterSelectBox option:selected").each(function()
+                {
+                    $(this).remove().appendTo("#PairedSelectBox");
+                });
+            });
+
+            $(btnRemove).click(function()
+            {
+                $("#PairedSelectBox option:selected").each(function()
+                {
+                    $(this).remove().appendTo("#MasterSelectBox");
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-<main>
-    <script>
-      function myFunction() {
-        var fname = document.getElementById("fname").value;
-        submitOK = "true";
 
-        if (isNaN(fname) || fname < 1 || fname > 100) {
-          alert("The age must be a number between 1 and 100");
-          submitOK = "false";
-        }
+<table>
+    <tr><td>Select Roles:</td><td></td></tr>
+    <tr><td>  <form>  <select id="MasterSelectBox" multiple="multiple">
+        <option value="Doctor">Doctor</option>
+        <option value="Detector">Detector</option>
+        <option value="Sniper">Sniper</option>
+        <option value="Ruintan">Ruintan</option>
+        <option value=""
+        <option value="Don">Don</option>
 
-        if (submitOK == "false") {
-          return false;
-        }
-      }
-    </script>
+    </select></form></td>
 
-    <form>
-        <table>
-            <tr><td>Select Roles:</td><td></td></tr>
-            <tr><td>  <form>  <select id="MasterSelectBox" name="MasterSelectBox" size="10" multiple="multiple">
-                <option value="Doctor">Doctor</option>
-                <option value="Detector">Detector</option>
-                <option value="Sniper">Sniper</option>
-                <option value="Ruintan">Ruintan</option>
-                <option value="Takavar">Takavar</option>
-                <option value="Don">Don</option>
-                <option value="Hooker">Hooker</option>
-            </select></form></td>
+        <td> <button id="btnAdd"> > </button><br>
+            <button id="btnRemove"> < </button>
+        </td>
 
-                <td> <button id="btnAdd"> > </button><br>
-                    <button id="btnRemove"> < </button>
-                </td>
+        <td> <form><select id="PairedSelectBox" multiple="multiple">
+        </select> </form></td>
 
-                <td> <form><select id="PairedSelectBox" name="PairedSelectBox" size="10" multiple="multiple">
+    </tr>
 
-                </select> </form></td>
+</table>
+<button id="save">Save</button>
+<p id="output"></p>
 
-            </tr>
-
-        </table>
-        <button id="save">Save</button>
-    <p id="output"></p>
-    </form>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-      $(document).ready( function(){
-
-        $('#MasterSelectBox').pairMaster();
-        $('#btnAdd').click(function(){
-          $('#MasterSelectBox').addSelected('#PairedSelectBox');
-        });
-        $('#btnRemove').click(function(){
-          $('#PairedSelectBox').removeSelected('#MasterSelectBox');
-        });
-
-        $( "#save" ).click( function( e ) {
-          $( "#output" ).empty();
-          $.each( $( "#PairedSelectBox" ).val(), function( i, v ) {
-            $( "#output" ).append( $( "<span> " + v + " </span>" ) );
-          } );
-        } );
-      });
-    </script>
-</main>
 </body>
 </html>

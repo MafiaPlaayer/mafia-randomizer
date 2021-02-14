@@ -25,11 +25,3 @@ func main() {
 	http.ListenAndServe(":8080", r)
 }
 
-/*func main() {
-
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/", indexHandler)
-
-}*/
-
