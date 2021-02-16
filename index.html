@@ -8,23 +8,49 @@
     <link rel="stylesheet" href="/assets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
-        $(function()
-        {
-            $(btnAdd).click(function()
-            {
+        $(function() {
+            var roles = new Array();
+
+            $(btnAdd).click(function() {
                 $("#MasterSelectBox option:selected").each(function()
                 {
                     $(this).remove().appendTo("#PairedSelectBox");
                 });
             });
 
-            $(btnRemove).click(function()
-            {
+            $(btnRemove).click(function() {
                 $("#PairedSelectBox option:selected").each(function()
                 {
                     $(this).remove().appendTo("#MasterSelectBox");
+                    /*const index = roles.indexOf($(this).options.selectedIndex);
+                    if (index > -1) {
+                        roles.splice(index, 1);
+                    }*/
                 });
             });
+
+            // This is supposed to be the review box
+            $(btnSave).click(function () {
+                $( "#output" ).empty();
+                $.each( $( "#PairedSelectBox" ).val(), function( i, v ) {
+                    $( "#output" ).append( $( "<span> " + v + " </span><br>" ) );
+                });
+            });
+
+            // random
+            $(btnRandom).click(function () {
+                //Example, including customisable intervals [lower_bound, upper_bound)
+                var limit = $(playersNo).val(),
+                    lower_bound = 1,
+                    unique_nums = [];
+                while (unique_nums.length < limit) {
+                    var random_number = Math.floor(Math.random()*(limit - lower_bound + 1) + lower_bound);
+                    if (unique_nums.indexOf(random_number) == -1) {
+                        unique_nums.push(random_number);
+                    }
+                }
+                console.log(unique_nums);
+            })
         });
     </script>
 </head>
@@ -40,7 +66,7 @@
 <body>
 
 <p id="rcorners">Enter the number of players:
-<input id="id1" type="number" max="20" required></input>
+<input id="playersNo" type="number" max="20" required></input>
 </p>
 <table>
     <tr><td>Select Roles:</td><td></td></tr>
@@ -63,8 +89,13 @@
     </tr>
 
 </table>
-<button id="save">Save</button>
+
+<button id="btnSave">Save</button>
+
 <p id="output"></p>
+<br>
+
+<button id="btnRandom">Randomize</button>
 
 </body>
 </html>
